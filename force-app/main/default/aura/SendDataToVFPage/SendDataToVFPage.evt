@@ -1,0 +1,5 @@
+<!-- this event used in SendDataToVFPageComponent -->
+<aura:event type="APPLICATION">
+    <aura:attribute name="currentRecId" type="List"/>
+    <aura:attribute name="CurrentRecDetails" type="Object" />
+</aura:event>

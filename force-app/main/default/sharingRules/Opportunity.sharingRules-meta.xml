@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>S2P</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>S2P</label>
+        <sharedTo>
+            <group>Project_Managers</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>StageName</field>
+            <operation>equals</operation>
+            <value>Closed Won</value>
+        </criteriaItems>
+        <criteriaItems>
+            <field>Type</field>
+            <operation>equals</operation>
+            <value>Existing Customer - Upgrade</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>false</includeRecordsOwnedByAll>
+    </sharingCriteriaRules>
+    <sharingOwnerRules>
+        <fullName>F2S</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>F2S</label>
+        <sharedTo>
+            <role>Inside_Sales</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Field_Sales</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingOwnerRules>
+        <fullName>SE2I</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>SE2I</label>
+        <sharedTo>
+            <role>Inside_Sales</role>
+        </sharedTo>
+        <sharedFrom>
+            <role>Sales_Executive</role>
+        </sharedFrom>
+    </sharingOwnerRules>
+</SharingRules>

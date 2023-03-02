@@ -1,0 +1,27 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global">
+
+    <aura:attribute name="strParentId" type="String"/>
+    <aura:attribute name="recordFields" type="Object"/>
+
+    <!--This event used to send the data from Lightning component to vf page-->
+    <aura:registerEvent name="vfEvent" type="c:SendDataToVFPage"/>
+
+    <aura:if isTrue="{!not(empty(v.strParentId))}">
+        <force:recordData aura:id="currentRecord" layoutType="FULL" recordId="{!v.strParentId}" targetFields="{!v.recordFields}"/>
+        <h3><b>Showing data from Lightning Component</b></h3><br/>
+        <div>
+            <lightning:card iconName="standard:account" title="{!v.recordFields.Name}">
+                <div class="slds-p-horizontal--small">
+                    <p class="slds-text-heading--medium"><lightning:formattedText title="Type" value="{!v.recordFields.Type}"/></p>
+                    <p class="slds-truncate">
+                        <lightning:formattedText title="Industry" value="{!v.recordFileds.Industry}"/></p>
+                    <p class="slds-truncate"><lightning:formattedPhone title="Phone" value="{!v.recordFields.Phone}"/></p>
+                </div>
+            </lightning:card>
+        </div><br/>
+        <div style="text-align: center">
+            <lightning:button variant="brand" label="Send Data VF Page" onclick="{!c.sendDataVFPage}" />
+        </div>
+    </aura:if>
+
+</aura:component>

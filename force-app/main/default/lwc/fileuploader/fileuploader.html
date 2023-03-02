@@ -1,0 +1,72 @@
+<template>
+    <lightning-card title="File Uploader">
+        <div style="margin-left:4%">
+            <lightning-input 
+                label="" 
+                name="file_uploader" 
+                onchange={handleFilesChange} 
+                type="file"
+                disabled={inputDis}
+                ></lightning-input>
+            <br/>
+            <p>Selected file is:</p>
+            <div class="slds-text-body_small slds-text-color_error">
+                <p>{fileName}</p>
+                <p>{errmsg}</p>
+            </div><br/>
+            <lightning-button 
+                class="slds-m-top--medium" 
+                label='Confirm File' 
+                onclick={handleUpload} 
+                variant="brand" 
+                disabled={buttonDis}></lightning-button>
+            <template if:true={showLoadingSpinner}>
+                <lightning-spinner alternative-text="Uploading......" size="medium"></lightning-spinner>
+            </template>
+            <lightning-combobox
+                name="Object"
+                label="Target Object"
+                value={value}
+                placeholder="Select Target Object"
+                options={options}
+                onchange={updateFields} 
+                disabled={targetDis}></lightning-combobox>
+            <br/>
+            <table>
+                <tr>
+                    <th>Column Name</th>
+                    <th>Map to Field</th>
+                </tr>
+                <template for:each={headings} for:item="heading">
+                    <tr key={heading}>
+                        <td>{heading}</td>
+                        <td><lightning-combobox
+                            name={heading}
+                            label=""
+                            value={fieldAPI}
+                            placeholder="Select Target Field"
+                            options={fields}
+                            onchange={updateMap}
+                            disabled={fieldDis}></lightning-combobox></td>
+                    </tr>
+                </template>
+            </table>
+            <lightning-button 
+                class="slds-m-top--medium" 
+                label='Confirm & Start Upload' 
+                onclick={handleImport} 
+                variant="brand" 
+                disabled={fieldDis}></lightning-button>
+
+            <lightning-button 
+                class="slds-m-top--medium" 
+                label='Reset All' 
+                onclick={connectedCallback} 
+                variant="brand" 
+                ></lightning-button>
+            <p>Progress: {complete}/{total}</p>
+        </div>
+        <br/>  
+
+    </lightning-card>
+</template>

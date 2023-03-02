@@ -1,0 +1,15 @@
+<apex:page controller="TestController" contentType="application/vnd.ms-excel#AccountExcel.xls" cache="true">
+		<apex:dataTable value="{!accountList}" var="c">
+			<apex:column >
+                <apex:facet name="header">Name</apex:facet>
+                <apex:outputText value="{!c.Name}"/>
+            </apex:column>
+			<apex:column >
+                <apex:facet name="header">Id</apex:facet>
+                <apex:outputText value="{!c.Id}"/>
+            </apex:column>
+		</apex:dataTable>
+
+    
+
+</apex:page>

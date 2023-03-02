@@ -1,0 +1,10 @@
+<!--c:ceNotifier-->
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:registerEvent name="cmpEvent" type="c:ceEvent"/>
+
+    <h1>Simple Component Event Sample</h1>
+    <p><lightning:button
+        label="Click here to fire a component event"
+        onclick="{!c.fireComponentEvent}" />
+    </p>
+</aura:component>

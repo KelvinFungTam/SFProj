@@ -1,0 +1,49 @@
+<apex:page standardController="Account" >
+    <apex:pageMessages />
+    <apex:includeLightning />
+    <div id="vfDemo" />
+
+    <apex:pageBlock title="Showing data from visualforce page">
+        <apex:pageBlockSection >
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Account Name" />
+                <apex:outputText styleClass="accName" />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Account Industry" />
+                <apex:outputText styleClass="accIndustry" />
+            </apex:pageBlockSectionItem>
+            <apex:pageBlockSectionItem >
+                <apex:outputLabel value="Account Phone" />
+                <apex:outputText styleClass="accPhone" />
+            </apex:pageBlockSectionItem>
+        </apex:pageBlockSection>
+    </apex:pageBlock> <br/><br/>
+
+    <script>
+        // Calling Lightning component from vf page
+        $Lightning.use("c:DemoLightingOutApp", function () {
+            $Lightning.createComponent("c:SendDataToVFPagec", {
+                strParentId: '{!Account.Id}', // passing parameters to Lightning Component
+            },
+                "vfDemo",
+                function (component) {
+                    console.log("Lightning component rendered successfully!!");
+                    // Event Service hander to handele the lightning component cusom event
+                    $A.eventService.addHandler({ "event": "c:SendDataToVFPage", "handler": retriveEventData });
+                });
+        });
+
+
+        function retriveEventData(event) {
+            var recordTypeId = event.getParam("currentRecId");
+            var eventRecordData = event.getParam("CurrentRecDetails");
+
+            // passing data to outputtext lables
+            document.getElementsByClassName("accName")[0].innerHTML = eventRecordData.Name;
+            document.getElementsByClassName("accIndustry")[0].innerHTML = eventRecordData.Industry;
+            document.getElementsByClassName("accPhone")[0].innerHTML = eventRecordData.Phone;
+        }
+
+    </script>
+</apex:page>

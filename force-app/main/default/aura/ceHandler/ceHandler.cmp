@@ -1,0 +1,16 @@
+<!--c:ceHandler-->
+<aura:component implements="flexipage:availableForAllPageTypes">
+    <aura:attribute name="messageFromEvent" type="String"/>
+    <aura:attribute name="numEvents" type="Integer" default="0"/>
+
+    <!-- Note that name="cmpEvent" in aura:registerEvent
+     in ceNotifier.cmp -->
+    <aura:handler name="cmpEvent" event="c:ceEvent" action="{!c.handleComponentEvent}"/>
+
+    <!-- handler contains the notifier component -->
+    <c:ceNotifier />
+    
+    <p>{!v.messageFromEvent}</p>
+    <p>Number of events: {!v.numEvents}</p>
+
+</aura:component>
